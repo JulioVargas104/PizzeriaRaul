@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html xmlns:th="thymeleaf.org">
+
+    <head>
+        <title>LISTA DE COMPRAS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script><!-- comment -->
+        <link rel="icon" href="/pizza.png">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <style>
+            body{
+                background-image: url(/pizza8.jpg);
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="menu2 :: nav">                
+            </div>
+            <div th:replace="salir :: div">                
+            </div>
+
+            <div class="col bg-white p-5 rounded-end">
+
+
+
+                <div class="alert alert-warning text-center fs-4 fw-bold" role="alert">
+                    LISTAR COMPRAS
+                </div>
+                <hr>
+
+                <form action="/compra/buscarCompra" method="post">
+                    <div class="input-group mb-3">
+                        <input type="text" name="descrip" class="form-control" placeholder="Escriba valor a buscar">
+                        <button class="btn btn-outline-secondary" type="submit" >BUSCAR</button>
+                    </div>
+                </form>
+
+                <hr>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="table-dark">
+                            <th scope="col">#</th>
+                            <th scope="col">Código</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Proveedor</th>
+                            <th scope="col">Medio Pago</th>
+                            <th scope="col">Tipo comprobante</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Detalle</th>
+                            <th scope="col">Anular</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="compra,x : ${compras}" >
+                            <th th:text="${x.count}" scope="row"></th>
+                            <td th:text="${compra.id}"></td>
+                            <td th:text="${compra.fecha}"></td>
+                            <td th:text="${compra.proveedor.razonsocial+' '+compra.proveedor.RUC}"></td>
+                            <td th:text="${compra.mediopago.nombremp}"></td>
+                            <td th:text="${compra.tipocomprobante.nombre}"></td>
+                            <td th:text="${compra.usuario.nombre+' '+compra.usuario.apellido}"></td>
+                            <td th:text="${compra.estado}" ></td>
+                            <td>
+                                <a th:href="@{/compra/detalle(compra_id=${compra.id})}" target="_self" style="color:blue;">
+                                    <i class="bi bi-clipboard"  style="font-size:25px" ></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="@{/compra/anular(compra_id=${compra.id})}" target="_self" style="color:red;" onclick="confirmar(this)">
+                                    <i class="bi bi-pencil-fill " style="font-size:25px"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="d-grid gap-2" style="width: 200px; margin: 0px 550px;">
+                    <a th:href="@{/compra/nuevo}" class="btn btn-primary" style="background-color: orange" type="button">AGREGAR</a>
+                </div>
+                <script>
+                    function confirmar(opcion)
+                    {
+                        event.preventDefault();
+
+                        Swal.fire({
+                            title: 'Advertencia!',
+                            text: '¿Esta seguro de anular la compra?',
+                            icon: 'warning',
+                            confirmButtonText: 'Aceptar',
+                            cancelButtonText: 'Cancelar',
+                            showCancelButton: true,
+                            showCloseButton: true
+                        }).then((result) => {
+                            if (result.isConfirmed)
+                            {
+                                location.href = opcion.href;
+                            }
+                        }
+                        );
+                    }
+                </script>
+
+
+            </div>
+        </main>
+</body>
+</html>

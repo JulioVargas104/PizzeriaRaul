@@ -1,0 +1,176 @@
+<!DOCTYPE html> 
+<html>
+    <head></head>
+<body>
+<div id="principal">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary"  style="background-color: red">
+         
+        <div class="container-fluid">
+           
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <img src="/pizza_raul.png" width="150px" height="90" >
+            
+      <nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark" style="background-color: red">
+  
+      <h3><span class="badge text-bg-dark">LA MEJOR PIZZA DE TODAS</span></h3>
+   
+          
+             
+            
+ 
+  
+
+      
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"span style="color:whitesmoke">
+                            Catálogo
+                        </a>
+                        <ul class="dropdown-menu">
+                           <li><a class="dropdown-item" th:href="@{/catalogo/}">Catálogo de productos</a></li>
+                        </ul>
+                       
+                    </li><!-- comment -->
+                    
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" span style="color:whitesmoke">
+                            Usuarios
+                            </a>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item"  th:href="@{/usuario/}">Lista de Usuarios</a></li>
+                            <li><a class="dropdown-item" th:href="@{/usuario/nuevoUsuario}">Nuevo Usuarios</a></li>
+                           
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" span style="color:whitesmoke">
+                            Clientes
+                            </a>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item"  th:href="@{/cliente/}">Lista de Clientes</a></li>
+                            <li><a class="dropdown-item" th:href="@{/cliente/nuevo}">Nuevo Cliente</a></li>
+                           
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" span style="color:whitesmoke">
+                            Productos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/producto/}">Lista de Productos</a></li>
+                            <li><a class="dropdown-item" th:href="@{/producto/nuevo}">Nuevo Producto</a></li>
+                            
+                        </ul>
+                    </li>
+
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" span style="color:whitesmoke">
+                            Proveedores
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/proveedor/}">Lista de Proveedores</a></li>
+                            <li><a class="dropdown-item" th:href="@{/proveedor/nuevoP}">Nuevo Proveedor</a></li>
+                           
+                        </ul>
+                       
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"span style="color:whitesmoke">
+                            Medios de Pago
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/mediosdpago/}">Ver Pagos Reg.</a></li>
+                            <li><a class="dropdown-item" th:href="@{/mediosdpago/nuevomp}">Agregar Pago</a></li>
+                       
+                       
+                        </ul>
+                       
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"span style="color:whitesmoke">
+                            Tipos de Comprobante
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/tiposcomprobante/}">Comprobantes</a></li>
+                            <li><a class="dropdown-item" th:href="@{/tiposcomprobante/nuevoTP}">Agregar Comprobantes</a></li>
+                            
+                        </ul>
+                       
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"span style="color:whitesmoke">
+                            Ventas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/venta/}">Lista Venta</a></li>
+                            <li><a class="dropdown-item" th:href="@{/venta/nuevo}">Agregar Venta</a></li>
+                            
+                        </ul>
+                       
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"span style="color:whitesmoke">
+                            Compras
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/compra/}">Lista Compra</a></li>
+                            <li><a class="dropdown-item" th:href="@{/compra/nuevo}">Agregar Compra</a></li>
+                            
+                        </ul>
+                       
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"span style="color:whitesmoke">
+                            Reporte
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/compra/}">Lista Compra</a></li>
+                            <li><a class="dropdown-item" th:href="@{/compra/nuevo}">Agregar Compra</a></li>
+                            
+                        </ul>
+                       
+                    </li>
+                    
+                    <li><a class="dropdown-item" th:href="@{/logout}">Sign out</a></li>
+                                                                         
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"span style="color:whitesmoke">
+                            Sobre Nosotros
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><A HREF="https://www.pizzaraul.com/tiendas" class="dropdown-item">Nuestras tiendas</A>
+                            <li><A HREF="https://www.facebook.com/PizzaRaulOficial/" class="dropdown-item">Facebook</A><!-- comment -->
+                            <li><A HREF="https://www.instagram.com/pizzaraul_oficial/?hl=es-la" class="dropdown-item">Instagram</A>
+                                <!--<a class="dropdown-item" th:href="@{/compra/}"></a>--></li>
+                   
+                        </ul>
+                       
+                    </li>
+                    
+                    
+                    
+
+                </ul>
+                
+
+            </div>
+            </nav>
+        </div>
+        
+      </nav>
+    
+</div>
+</body>
+<html>

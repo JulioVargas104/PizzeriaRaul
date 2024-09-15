@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>NUEVO USUARIO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script><!-- comment -->
+        <link rel="icon" href="/pizza.png">
+        <style>
+            body{
+                background-image: url(/pizza8.jpg);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="menu2 :: nav">                
+            </div>
+            <div th:replace="salir :: div">                
+            </div>
+
+            <div class="col bg-white p-5 rounded-end">
+                <hr>
+                <div class="alert alert-warning" role="alert">
+                    <center>
+                        <FONT SIZE=5>
+                        <strong>NUEVO USUARIO </strong>
+                        </font>
+                    </center>
+
+                </div>
+                <hr>
+                <!-- post envia datos internos -->
+                <form action="/usuario/RegistrarUsuario" method="post" class="row g-3">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Nombres</label>
+                        <input type="text" class="form-control" name="nom" placeholder="Escriba su nombre">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Apellido</label>
+                        <input type="text" class="form-control" name="ape" placeholder="Escriba su apellido">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">DNI</label>
+                        <input type="text" class="form-control" name="dni" placeholder="Escriba su DNI">
+                    </div>
+
+                    <div class="col-6">
+                        <label class="form-label">Correo</label>
+                        <input type="text" class="form-control" name="email" placeholder="correo@example.com">
+                    </div>
+
+                    <div class="col-6">
+                        <label  class="form-label">Celular</label>
+                        <input type="text" class="form-control" name="celu" placeholder="Ingrese su celular">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Dirección</label>
+                        <input type="text" class="form-control" name="direc" placeholder="Escriba su dirección">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Password</label>
+                        <input type="text" class="form-control" name="pass" placeholder="Escriba su constraseña">
+                    </div>         
+
+                    <div class="col-12">
+                        <label class="form-label">Usuario</label>
+                        <input type="text" class="form-control" name="user" placeholder="Escriba su usuario">
+                    </div>   
+
+                    <div class="col-12">
+                        <label  class="form-label">Rol</label><br>
+                        <select name="roles" class="form-control" style="width:200px; height: 40px" required>
+                            <option value="" disabled selected>Seleccione rol</option>
+                            <option  >ROLE_ADMIN</option>
+                            <option  >ROLE_VENDEDOR</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12" style="width: 200px; margin: 20px 550px;">
+                        <button type="submit" class="btn btn-primary" style="background-color: orange" >Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+</body>
+</html>

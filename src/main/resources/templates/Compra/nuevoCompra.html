@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>NUEVA COMPRA
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script><!-- comment -->
+        <link rel="icon" href="/pizza.png">
+        <style>
+            body{
+                background-image: url(/pizza8.jpg);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="menu2 :: nav">                
+            </div>
+
+            <div th:replace="salir :: div">                
+            </div>
+            <div class="col bg-white p-5 rounded-end">
+
+
+                <div class="alert alert-warning" role="alert">
+                    <center>
+                        <FONT SIZE=5>
+                        <strong>NUEVA COMPRA </strong>
+                        </font>
+                    </center>
+                    <center>  
+                        <img src="/scm.png" style="witdh:100px; height:100px" >
+                    </center>
+
+                </div>
+                <hr>
+                <!-- post envia datos internos -->
+                <form action="/compra/agregar" method="post" class="row g-3">
+                    <div class="col-md-2" >
+                        <label  class="form-label">Producto</label><br>
+                        <img src="/add-product.png" style="witdh:100px; height:100px" >
+                        <select name="producto_id" class="form-control" style="width:200px; height: 40px; margin-top: 15px" required>
+                            <option value="" disabled selected>Seleccione producto</option>
+                            <option th:each="producto : ${productos}" th:text="${producto.nombre+' S./'+producto.precio}" th:value="${producto.id}">text</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2" style="margin-left: 100px">
+                        <label class="form-label">Cantidad</label><br>
+                        <input class="form-control" type="number" name="cant" value="1" step="1" min="1" style="width:100px; height: 35px" required>    
+                    </div>
+                    <div class="col-md-4" style="width: 100px; margin: 40px 0px; ">
+                        <button type="submit" class="btn btn-primary" style="background-color: orange" >Agregar</button>
+                    </div> 
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr class="table-dark">
+                                <td scope="col">#</td>
+                                <td scope="col">Id</td>
+                                <td scope="col">Producto</td>
+                                <td scope="col">Precio</td>
+                                <td scope="col">Cantidad</td>
+                                <td scope="col">Total</td>
+                                <td scope="col">Eliminar</td>
+                            </tr>
+                            <tr th:each="carrito,x : ${carrito}">
+                                <td th:text="${x.count}"></td>
+                                <td th:text="${carrito.id}"></td>
+                                <td th:text="${carrito.producto}"></td>
+                                <td th:text="${carrito.precio}"></td>
+                                <td th:text="${carrito.cantidad}"></td>
+                                <td th:text="${carrito.total}"></td>
+                                <td>
+                                    <a th:href="@{/compra/eliminarcarrito(cod=${x.count})}" target="_self" style="color:red;">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </form>
+                <hr>
+                <form action="/compra/registrar" method="post" class="row g-3">
+
+                    <div class="col-md-3">
+                        <label class="form-label">Proveedor</label> <br>
+                        <img src="/delivery-courier.png" style="witdh:100px; height:100px" >
+                        <select name="proveedor_id" class="form-control" style="width:200px; height: 40px; margin-top: 15px" required>
+                            <option disabled selected>Seleccione proveedor</option>
+                            <option value="value" th:each="proveedor : ${proveedores}" th:text="${proveedor.razonsocial+' '+proveedor.RUC}" th:value="${proveedor.idp}">text</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Tipo de comprobante</label><br>
+                        <img src="/receipt.png" style="witdh:100px; height:100px" >
+                        <select name="tipocomprobante_id" class="form-control" style="width:270px; height: 40px; margin-top: 15px" required>
+                            <option disabled selected>Seleccione tipo de comprobante</option>
+                            <option value="value" th:each="tipocomprobante : ${tipocomprobantes}" th:text="${tipocomprobante.nombre}" th:value="${tipocomprobante.id}">text</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Medio de pago</label><br>
+                        <img src="/cash-on-delivery.png" style="witdh:100px; height:100px" >
+                        <select name="mediopago_id" class="form-control" style="width:250px; height: 40px; margin-top: 15px" required>
+                            <option disabled selected>Seleccione medio de pago</option>
+                            <option value="value" th:each="mediopago : ${mediopagos}" th:text="${mediopago.nombremp}" th:value="${mediopago.idmp}">text</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Fecha</label><br>
+                        <img src="/calendar.png" style="witdh:100px; height:100px" >
+                        <input type="datetime-local"  class="form-control" style="width:200px; height: 40px; margin-top: 15px" name="fec" required>
+                    </div>
+
+                    <div class="col-md-4" style="width: 200px; margin: 40px 70pc;">
+                        <button type="submit" class="btn btn-primary" style="background-color: orange" >Registrar</button>
+                    </div>
+                </form>
+                <hr>
+
+            </div>
+        </main>
+</body>
+</html>

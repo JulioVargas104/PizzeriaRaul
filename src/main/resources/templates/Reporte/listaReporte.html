@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<link rel="icon" href="/pizza.png">
+<html xmlns:th="thymeleaf.org">
+
+    <head>
+        <title>REPORTE</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+        <!-- Iconos -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <style>
+            body{
+                background-image: url(/pizza8.jpg);
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="menu2 :: nav"></div>
+
+            <div th:replace="salir :: div">                
+            </div>
+
+            <div class="col bg-white p-5 rounded-end">
+                <div class="alert alert-warning text-center fs-4 fw-bold" role="alert">
+                    REPORTE
+                </div>
+
+                <div>              
+                    <strong>Ganancia total: S./<span th:text="${ganancia}"></span> soles</strong>
+                </div>
+
+            </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            TOTAL DE VENTAS
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div> 
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr class="table-dark">
+
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Total</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="result : ${listaVentaActivo}" >
+
+                                            <td th:text="${result[0]}"></td>
+                                            <td th:text="${result[1]}"></td>
+                                            <td th:text="${result[2]}"></td>
+                                            <td th:text="'S/. '+${result[3]}"></td>
+                                            <td th:text="'S/. '+${result[4]}"></td>
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <div>              
+                                    <strong>Monto total de ventas: S./<span th:text="${totaldetalleV}"></span> soles</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            TOTAL DE COMPRAS
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div> 
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr class="table-dark">
+
+
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Total</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="result : ${listaCompraActivo}" >
+
+                                            <td th:text="${result[0]}"></td>
+                                            <td th:text="${result[1]}"></td>
+                                            <td th:text="${result[2]}"></td>
+                                            <td th:text="'S/. '+${result[3]}"></td>
+                                            <td th:text="'S/. '+${result[4]}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div>              
+                                    <strong>Monto total de compras: S./<span th:text="${totaldetalleC}"></span> soles</stSrong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            TOP 5 CLIENTES CON MÁS COMPRAS
+                        </button>
+                    </h2>
+                    <div id="collapseThree"  class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div> 
+                                <table class="table table-striped">
+                                    <head>
+                                    <tr class="table-dark">
+
+                                        <th scope="col">Cliente</th>
+
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="result : ${clienteMasCompras}">
+                                            <td th:text="${result[0]}"></td>
+                                            <td th:text="'S/. '+${result[1]}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            TOP 5 PROVEEDORES CON MAS ABASTECIMIENTO
+                        </button>
+                    </h2>
+                    <div id="collapseFour"  class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div> 
+                                <table class="table table-striped">
+                                    <head>
+                                    <tr class="table-dark">
+
+                                        <th scope="col">ID</th>
+                                        <th scope="col">RUC</th>
+                                        <th scope="col">Razón social</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="result : ${proveedorMasAbastecimiento}">
+                                            <td th:text="${result[0]}"></td>
+                                            <td th:text="${result[1]}"></td>
+                                            <td th:text="${result[2]}"></td>
+                                            <td th:text="'S/. '+${result[3]}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- comment -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            TOP 5 DE PRODUCTOS QUE MAS SE VENDIERON
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="accordion-body">
+                                <div> 
+                                    <table class="table table-striped">
+                                        <head>
+                                        <tr class="table-dark">
+
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Codigo</th><!-- comment -->
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Cantidad</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="result : ${productosMasVendidos}">
+                                                <td th:text="${result[0]}"></td>
+                                                <td th:text="${result[1]}"></td>
+                                                <td th:text="${result[2]}"></td>
+                                                <td th:text="'S/. '+${result[3]}"></td><!-- comment -->
+                                                <td th:text="${result[4]}"></td><!-- comment -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            TOP 5 DE MEDIOS DE PAGO MÁS USADO
+                        </button>
+                    </h2>
+                    <div id="collapseSix"  class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+
+                            <div> 
+                                <table class="table table-striped">
+                                    <head>
+                                    <tr class="table-dark">
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Medios de pago</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="result : ${mediosdPagoMasUsado}">
+                                            <td th:text="${result[0]}"></td>
+                                            <td th:text="${result[1]}"></td>
+                                            <td th:text="${result[2]}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            PRODUCTOS CON STOCK MENOR A 10
+                        </button>
+                    </h2>
+                    <div id="collapseSeven"  class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+
+                            <div> 
+                                <table class="table table-striped">
+                                    <head>
+                                    <tr class="table-dark">
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Precio compra</th><!-- comment -->
+                                        <th scope="col">Precio venta</th>
+                                        <th scope="col">Stock</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="result : ${stockMenor10}">
+                                            <td th:text="${result.id}"></td>
+                                            <td th:text="${result.codigo}"></td>
+                                            <td th:text="${result.nombre}"></td>
+                                            <td th:text="'S/. '+${result.precio}"></td><!-- comment -->
+                                            <td th:text="'S/. '+${result.precioV}"></td><!-- comment -->
+                                            <td th:text="${result.stock}"></td><!-- comment -->
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

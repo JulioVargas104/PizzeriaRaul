@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>LISTA DETALLE DE VENTA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script><!-- comment -->
+        <link rel="icon" href="/pizza.png">
+
+        <style>
+            body{
+                background-image: url(/pizza8.jpg);
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="menu2 :: nav">                
+            </div>
+            <div th:replace="salir :: div">                
+            </div>
+
+            <div class="col bg-white p-5 rounded-end">
+                <div class="alert alert-warning" role="alert">
+                    <center>
+                        <FONT SIZE=5>
+                        <strong>LISTA DETALLE DE VENTA </strong>
+                        </font>
+                    </center>
+                </div>
+                <hr>
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="detalleventa,x : ${detalleventas}">
+                            <th th:text="${x.count}" scope="row"></th>
+                            <td th:text="${detalleventa.id}"></td>
+                            <td th:text="${detalleventa.producto.nombre}"></td>
+                            <td th:text="${detalleventa.precio}"></td>
+                            <td th:text="${detalleventa.cantidad}"></td>
+                            <td th:text="${detalleventa.total}"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <div>              
+                    <strong>Monto total: S./<span th:text="${totalpordetalleV}"></span> soles</strong>
+                </div><!-- comment -->
+                <div class="d-grid gap-2" style="width: 200px; margin: 0px 550px;">
+                    <a th:href="@{/venta/}" class="btn btn-primary" style="background-color: orange" type="button">REGRESAR</a>
+                </div>
+
+
+
+            </div>
+        </main>
+</body>
+</html>
